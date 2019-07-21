@@ -7,6 +7,15 @@
   ['A','D','E','E']
 ]
 exists(board, "ABCCED") returns true, exists(board, "SEE") returns true, exists(board, "ABCB") returns false.*/
+/*
+ * Approach: The idea used here is described in the steps below:
+   Check every cell, if the cell has first character, then recur one by one and try all 4 directions from that cell for a match.
+   Mark the position in the grid as visited and recur in the 4 possible directions.
+   After recurring, again mark the position as unvisited.
+   Once all the letters in the word is matched, return true.
+   Source: https://www.geeksforgeeks.org/check-if-a-word-exists-in-a-grid-or-not/
+ */
+
 function isExist(board: number[][], word: string): boolean{
     
     return false;
