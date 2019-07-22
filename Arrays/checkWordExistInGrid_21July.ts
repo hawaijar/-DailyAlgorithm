@@ -15,6 +15,12 @@ exists(board, "ABCCED") returns true, exists(board, "SEE") returns true, exists(
    Once all the letters in the word is matched, return true.
    Source: https://www.geeksforgeeks.org/check-if-a-word-exists-in-a-grid-or-not/
  */
+/*
+ * Solving non-recursively:
+ * 1. At each step, we look at the last point in the list, and see if there's a conenction to the unvisited list
+ * 2. If we find an univisited connection, we add the conenction point to the path list and visited set
+ *
+ */
 
 function isExist(board: number[][], word: string): boolean{
     
