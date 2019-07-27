@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "es5",
+    "allowJs": true,
+    "strict": true,
     "noImplicitAny": true,
     "rootDir": ".",
-    "sourceMap": false
+    "sourceMap": false,
+    "lib": ["es2015"]
   },
   "exclude": ["node_modules"]
 }
