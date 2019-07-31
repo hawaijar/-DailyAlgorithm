@@ -1,6 +1,6 @@
 type Link = Map<Cell, boolean>
 
-class Cell {
+export class Cell {
     row: number;
     column: number;
     links: Link;
