@@ -22,7 +22,7 @@ export class Grid {
         }
     }
     isValid(x: number, y: number) {
-        if ((x >= 0 && x <= this.rows) && (y >= 0 && y <= this.columns)) {
+        if ((x >= 0 && x < this.rows) && (y >= 0 && y < this.columns)) {
             if (this.array[x][y] && this.nodes && !this.nodes[x][y].visited)
                 return true;
         }
@@ -36,6 +36,8 @@ export class Grid {
         if (this.isValid(x, y + 1)) neighbours.push(new Node(x, y + 1, this.array[x][y + 1]))
         if (this.isValid(x - 1, y)) neighbours.push(new Node(x - 1, y, this.array[x - 1][y]))
         if (this.isValid(x + 1, y)) neighbours.push(new Node(x + 1, y, this.array[x + 1][y]))
+
+        return neighbours;
     }
 
     bfsPath(sx: number, sy: number, dx: number, dy: number) {
@@ -43,16 +45,28 @@ export class Grid {
         let queue: Node[] = [source];
         source.visited = true;
 
+        //Step1: Traverse all the nodes
         while (queue.length) {
             let node = queue.shift();
-            if (node) {
+            if (node && !node.visited) {
                 let neighbours = this.findNeighbours(node);
+                for (let i = 0; i < neighbours.length; i++) {
+                    let neighbour = neighbours[i];
+                    if (neighbour && !neighbour.visited) {
+                        neighbour.visited = true;
+                        queue.push(neighbour);
+                        neighbour.parent = node;
+                    }
+                }
             }
-
+        }
+        // Step2: Reconstruct the path from the destination upto the source
+        let destination: Node | null = this.nodes[dx][dy];
+        while (destination) {
+            console.log(destination);
+            destination = destination.parent;
         }
     }
-
-
     print() {
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.columns; j++) {
@@ -70,4 +84,5 @@ const array = [
 ]
 
 let grid = new Grid(array);
-grid.print();
+//grid.print();
+grid.bfsPath(0, 0, 3, 3)
