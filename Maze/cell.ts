@@ -36,3 +36,5 @@ class Cell {
         return list;
     }
 }
+
+export default Cell;
