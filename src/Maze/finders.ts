@@ -11,11 +11,13 @@ function breadFirstSearch(startX: number, startY: number, endX: number, endY: nu
     let endNode = grid.getNodeAt(endX, endY);
     let startOpenList: Cell[] = [];
     let endOpenList: Cell[] = [];
+    let parents: Cell[] = [];
 
     // push the start and end nodes into the queues
     startOpenList.push(startNode);
     startNode.visited = true;
     startNode.openBy = START_NODE;
+    startNode.parent = null;
     //endOpenList.push(endNode);
     //endNode.visited = true;
     //endNode.openBy = END_NODE;
@@ -31,10 +33,13 @@ function breadFirstSearch(startX: number, startY: number, endX: number, endY: nu
                 continue;
             }
             if (neighbour === endNode) {
+                neighbour.parent = node;
+                reconstructPath(endNode);
                 foundNode = true;
                 break;
             }
             neighbour.visited = true;
+            neighbour.parent = node;
             startOpenList.push(neighbour)
         }
     }
@@ -44,13 +49,19 @@ function breadFirstSearch(startX: number, startY: number, endX: number, endY: nu
     else {
         console.log('NOT FOUND!!!');
     }
+}
 
+function reconstructPath(node: Cell | null | undefined) {
+    while (node) {
+        console.log(`[${node.x}][${node.y}]`);
+        node = node.parent;
+    }
 }
 
 let array = [
-    [1, 0, 0, 0],
     [1, 1, 0, 0],
-    [0, 1, 0, 0],
+    [1, 0, 1, 1],
+    [1, 1, 0, 1],
     [0, 1, 1, 1]
 ]
 
