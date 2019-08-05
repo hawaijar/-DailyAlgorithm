@@ -4,10 +4,9 @@
     "allowJs": true,
     "strict": true,
     "noImplicitAny": true,
-    "rootDir": ".",
-    "sourceMap": false,
+    "sourceMap": true,
     "lib": ["es2015", "dom"],
-    "outDir": "./dist"
+    "outDir": "dist"
   },
   "exclude": ["node_modules"]
 }

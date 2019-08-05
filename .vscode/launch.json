@@ -8,8 +8,10 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/Maze/Grid.ts",
-      "outFiles": ["${workspaceFolder}/**/*.js"]
+      "program": "C:\\Users\\SushilKumar\\Documents\\Personal\\Github\\-DailyAlgorithm\\src\\Maze\\finders.ts",
+      "outFiles": [
+        "C:\\Users\\SushilKumar\\Documents\\Personal\\Github\\-DailyAlgorithm\\dist\\src\\**\\*.js"
+      ]
     }
   ]
 }
