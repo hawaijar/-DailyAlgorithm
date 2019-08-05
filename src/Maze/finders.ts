@@ -1,45 +1,50 @@
-
 import Grid from "./Grid";
-import Node from "./Node";
+import Cell from "./Cell";
 
 /** 1-way Path finders */
-
 const START_NODE = 0;
 const END_NODE = 1;
 
 function breadFirstSearch(startX: number, startY: number, endX: number, endY: number, grid: Grid) {
+    let foundNode: boolean = false;
     let startNode = grid.getNodeAt(startX, startY);
     let endNode = grid.getNodeAt(endX, endY);
-    let startOpenList: Node[] = [];
-    let endOpenList: Node[] = [];
+    let startOpenList: Cell[] = [];
+    let endOpenList: Cell[] = [];
 
     // push the start and end nodes into the queues
     startOpenList.push(startNode);
     startNode.visited = true;
     startNode.openBy = START_NODE;
-    endOpenList.push(endNode);
-    endNode.visited = true;
-    endNode.openBy = END_NODE;
+    //endOpenList.push(endNode);
+    //endNode.visited = true;
+    //endNode.openBy = END_NODE;
 
     // while both the queues are not empty
-    while (startOpenList.length && endOpenList.length) {
+    while (startOpenList.length) {
         // expand start open list
-        let node = <Node>startOpenList.shift(); // or, startOpenList.shift()!
-        let neighbours: Node[] = grid.getNeighbours(node);
+        let node = <Cell>startOpenList.shift(); // or, startOpenList.shift()!
+        let neighbours: Cell[] = grid.getNeighbours(node);
 
         for (let neighbour of neighbours) {
             if (neighbour.visited) {
                 continue;
             }
             if (neighbour === endNode) {
-                console.log('FOUND!!!');
+                foundNode = true;
                 break;
             }
             neighbour.visited = true;
-            startOpenList.push(node)
+            startOpenList.push(neighbour)
         }
     }
-    console.log('NOT FOUND!!!');
+    if (foundNode) {
+        console.log("FOUND NODE!!!");
+    }
+    else {
+        console.log('NOT FOUND!!!');
+    }
+
 }
 
 let array = [

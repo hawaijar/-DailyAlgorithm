@@ -7,11 +7,12 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "C:\\Users\\SushilKumar\\Documents\\Personal\\Github\\-DailyAlgorithm\\src\\Maze\\finders.ts",
-      "outFiles": [
-        "C:\\Users\\SushilKumar\\Documents\\Personal\\Github\\-DailyAlgorithm\\dist\\src\\**\\*.js"
-      ]
+      "name": "Debug TypeScript in Node.js",
+      "preLaunchTask": "typescript",
+      "program": "${workspaceFolder}/src/Maze/finders.ts",
+      "cwd": "${workspaceFolder}",
+      "protocol": "inspector",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
     }
   ]
 }

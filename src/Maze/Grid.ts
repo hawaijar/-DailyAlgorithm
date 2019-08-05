@@ -1,10 +1,10 @@
-import Node from "./Node";
+import Cell from "./Cell"
 
 export default class Grid {
   height: number;
   width: number;
   matrix: number[][];
-  nodes: Node[][];
+  nodes: Cell[][];
   constructor(matrix: number[][]) {
     this.height = matrix.length;
     this.width = matrix[0].length;
@@ -17,7 +17,7 @@ export default class Grid {
       nodes[i] = new Array(this.width);
       for (let j = 0; j < this.width; j++) {
         // 1 means walkable and 0 wall
-        nodes[i][j] = new Node(i, j);
+        nodes[i][j] = new Cell(i, j);
         if (this.matrix[i][j]) {
           nodes[i][j].walkable = true;
         } else {
@@ -34,12 +34,12 @@ export default class Grid {
     return this.isInsideTheGrid(x, y) && this.nodes[x][y].walkable;
   }
   isInsideTheGrid(x: number, y: number) {
-    return x >= 0 && x <= this.width && (y >= 0 && y <= this.height);
+    return x >= 0 && x < this.width && (y >= 0 && y < this.height);
   }
   setWalkableAt(x: number, y: number) {
     this.nodes[x][y].walkable = true;
   }
-  getNeighbours(node: Node) {
+  getNeighbours(node: Cell) {
     let [x, y] = [node.x, node.y];
     let neigbours = [];
     // check North: ↑
