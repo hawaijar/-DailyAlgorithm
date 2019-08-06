@@ -46,10 +46,10 @@ export default class Grid {
     if (this.isWalkableAt(x, y - 1)) neigbours.push(this.nodes[x][y - 1]);
     // check South: ↓
     if (this.isWalkableAt(x, y + 1)) neigbours.push(this.nodes[x][y + 1]);
-    // check West: ←
-    if (this.isWalkableAt(x - 1, y)) neigbours.push(this.nodes[x - 1][y]);
     // check East: →
     if (this.isWalkableAt(x + 1, y)) neigbours.push(this.nodes[x + 1][y]);
+    // check West: ←
+    if (this.isWalkableAt(x - 1, y)) neigbours.push(this.nodes[x - 1][y]);
 
     return neigbours;
   }

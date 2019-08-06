@@ -50,7 +50,6 @@ function breadFirstSearch(startX: number, startY: number, endX: number, endY: nu
         console.log('NOT FOUND!!!');
     }
 }
-
 function reconstructPath(node: Cell | null | undefined) {
     while (node) {
         console.log(`[${node.x}][${node.y}]`);
@@ -58,12 +57,41 @@ function reconstructPath(node: Cell | null | undefined) {
     }
 }
 
+
+function findConnectedComponents(grid: Grid): number {
+    let count = 0;
+    for (let i = 0; i < grid.height; i++) {
+        for (let j = 0; j < grid.width; j++) {
+            if (!grid.isWalkableAt(i, j)) continue;
+            let cell: Cell = grid.getNodeAt(i, j);
+
+            if (cell.visited) continue;
+            count += 1;
+            let queue: Cell[] = [cell];
+            cell.visited = true;
+            while (queue.length) {
+                let node = queue.pop()!;
+                let neighbours = grid.getNeighbours(node);
+                for (let neighbour of neighbours) {
+                    if (neighbour.visited) continue;
+                    neighbour.visited = true;
+                    queue.push(neighbour);
+                }
+            }
+        }
+    }
+    return count;
+}
+
 let array = [
     [1, 1, 0, 0],
-    [1, 0, 1, 1],
     [1, 1, 0, 1],
+    [0, 0, 0, 0],
     [0, 1, 1, 1]
 ]
 
 let grid: Grid = new Grid(array);
-breadFirstSearch(0, 0, 3, 3, grid);
+//breadFirstSearch(0, 0, 3, 3, grid);
+/** comment bfs to run below function as it modifies the Grid! */
+let connectedComponents = findConnectedComponents(grid);
+console.log(connectedComponents);
