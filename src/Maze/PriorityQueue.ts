@@ -1,9 +1,9 @@
-class PQElement {
-    constructor(public data: string | number, public priority: number) { }
+export class PQElement<T> {
+    constructor(public data: T, public priority: number) { }
 }
 
-export default class PriorityQueue<T extends string | number> {
-    container: PQElement[] = [];
+export default class PriorityQueue<T> {
+    container: PQElement<T>[] = [];
     constructor(public size: number, public isMin: boolean = true) { }
 
     isEmpty() {
@@ -36,13 +36,28 @@ export default class PriorityQueue<T extends string | number> {
             }
         }
     }
-    dequeue(): PQElement | void {
+    dequeue(): PQElement<T> | null | undefined {
         if (this.isEmpty()) {
-            console.log("Queue is empty")
+            return null;
         }
         else {
             return this.container.pop();
         }
+    }
+    getElement(data: T): T | null | undefined {
+        if (this.isEmpty) {
+            return null;
+        }
+        for (let i = 0; i < this.container.length; i++) {
+            let element = this.container[i];
+            if (element.data === data) {
+                return data;
+            }
+        }
+        return null;
+    }
+    updatePriority(data: T, priority: number) {
+
     }
     display() {
         if (this.isEmpty()) {
@@ -57,12 +72,14 @@ export default class PriorityQueue<T extends string | number> {
     }
 }
 
-/*
-let pq = new PriorityQueue(5, false);
-pq.enQueue(5, 3);
-pq.enQueue(10, 2);
-pq.enQueue(20, 1);
-pq.enQueue(2, 10);
+/** Testing Priority Queue */
+// let pq = new PriorityQueue(5, false);
+// pq.enQueue(2, 3);
+// pq.enQueue(100, 2);
+// pq.enQueue(90, 1);
+// pq.enQueue(20, -1);
 
-pq.display();
-*/
+// pq.display();
+
+
+
