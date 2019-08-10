@@ -2,9 +2,9 @@ class PQElement {
     constructor(public data: string | number, public priority: number) { }
 }
 
-class PriorityQueue<T extends string | number> {
+export default class PriorityQueue<T extends string | number> {
     container: PQElement[] = [];
-    constructor(public size: number) { }
+    constructor(public size: number, public isMin: boolean = true) { }
 
     isEmpty() {
         return this.container.length === 0;
@@ -22,7 +22,10 @@ class PriorityQueue<T extends string | number> {
         }
         else {
             for (let i = 0; i < this.container.length; i++) {
-                if (priority <= this.container[i].priority) {
+                if (
+                    this.isMin ?
+                        priority <= this.container[i].priority :
+                        priority >= this.container[i].priority) {
                     this.container.splice(i, 0, element);
                     found = true;
                     break;
@@ -54,10 +57,12 @@ class PriorityQueue<T extends string | number> {
     }
 }
 
-let pq = new PriorityQueue(5);
+/*
+let pq = new PriorityQueue(5, false);
 pq.enQueue(5, 3);
 pq.enQueue(10, 2);
 pq.enQueue(20, 1);
 pq.enQueue(2, 10);
 
 pq.display();
+*/

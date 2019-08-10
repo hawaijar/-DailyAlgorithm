@@ -1,5 +1,6 @@
 import Grid from "./Grid";
 import Cell from "./Cell";
+import PQueue from "./PriorityQueue"
 
 /** 1-way Path finders */
 const START_NODE = 0;
@@ -56,6 +57,14 @@ function reconstructPath(node: Cell | null | undefined) {
         node = node.parent;
     }
 }
+function dijikstraSearch(startX: number, startY: number, endX: number, endY: number, grid: Grid) {
+    /** Initialize all distances(weight) from Source to be Infinity */
+    let finalWeightList: number[][] = [];
+    for (let i = 0; i < grid.height; i++) {
+        finalWeightList[i] = new Array(grid.width).fill(Number.POSITIVE_INFINITY);
+    }
+
+}
 
 
 function findConnectedComponents(grid: Grid): number {
@@ -83,11 +92,16 @@ function findConnectedComponents(grid: Grid): number {
     return count;
 }
 
+/** Below numbers in each index represents weight between the (x,y) co-ordinates
+ *  For e.g, weight between 2 ==> 4 is 5 and 3 ==> 4 is 6 etc.
+ */
+
 let array = [
-    [1, 1, 0, 0],
-    [1, 1, 0, 1],
-    [0, 0, 0, 0],
-    [0, 1, 1, 1]
+    [1, 1, 0, 0, 1],
+    [1, 2, 1, 1, 1],
+    [0, 1, 0, 1, 5],
+    [0, 1, 1, 1, 6],
+    [0, 0, 0, 1, 1]
 ]
 
 let grid: Grid = new Grid(array);

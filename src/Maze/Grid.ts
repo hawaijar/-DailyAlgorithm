@@ -18,7 +18,8 @@ export default class Grid {
       for (let j = 0; j < this.width; j++) {
         // 1 means walkable and 0 wall
         nodes[i][j] = new Cell(i, j);
-        if (this.matrix[i][j]) {
+        /** Any value with zero or negative is a wall --> Weight */
+        if (this.matrix[i][j] >= 1) {
           nodes[i][j].walkable = true;
         } else {
           nodes[i][j].walkable = false;
