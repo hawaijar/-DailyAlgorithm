@@ -24,8 +24,8 @@ export default class PriorityQueue<T> {
             for (let i = 0; i < this.container.length; i++) {
                 if (
                     this.isMin ?
-                        priority <= this.container[i].priority :
-                        priority >= this.container[i].priority) {
+                        priority >= this.container[i].priority :
+                        priority <= this.container[i].priority) {
                     this.container.splice(i, 0, element);
                     found = true;
                     break;
@@ -36,12 +36,12 @@ export default class PriorityQueue<T> {
             }
         }
     }
-    dequeue(): PQElement<T> | null | undefined {
+    dequeue(): T | null {
         if (this.isEmpty()) {
             return null;
         }
         else {
-            return this.container.pop();
+            return this.container.pop()!.data;
         }
     }
     getElement(data: T): T | null | undefined {
@@ -56,8 +56,17 @@ export default class PriorityQueue<T> {
         }
         return null;
     }
-    updatePriority(data: T, priority: number) {
-
+    updatePriority(node: T, priority: number): void {
+        // find the node first
+        for (let i = 0; i < this.container.length; i++) {
+            if (this.container[i].data === node) {
+                // remove the element
+                this.container.splice(i, 1);
+                // add again to the Queue
+                this.enQueue(node, priority);
+                break;
+            }
+        }
     }
     display() {
         if (this.isEmpty()) {
