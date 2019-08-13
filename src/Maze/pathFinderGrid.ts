@@ -75,7 +75,7 @@ function breathFirstSearch(s: Position, d: Position, grid: Grid) {
         let neighbours = grid.neighbours(current);
         for (let neighbour of neighbours) {
             if (!neighbour.isVisited) {
-                neighbour.parent = { ...current };
+                neighbour.parent = current;
                 neighbour.isVisited = true;
                 queue.push(neighbour);
             }
