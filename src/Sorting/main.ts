@@ -21,5 +21,23 @@ function selectionSort<T>(array: T[]) {
     return result;
 }
 
-let array = [2, 40, 1, 7, 3, 9, 12];
-console.log(selectionSort(array))
+function quickSort<T>(array: T[]): T[] {
+    /** base case */
+    if (array.length <= 2) {
+        if (array.length < 2) return array;
+        if (array[0] > array[1]) {
+            [array[0], array[1]] = [array[1], array[0]];
+            return array;
+        }
+        return array;
+    }
+    /** recursive case */
+    let pivot = array[array.length - 1];
+    let smallest = array.filter(x => x < pivot);
+    let largest = array.filter(x => x > pivot);
+    return [...quickSort(smallest), pivot, ...quickSort(largest)]
+}
+
+let array = [2, 40, 1, 7, 3, 9, 12, 0];
+console.log(selectionSort([...array]))
+console.log(quickSort([...array]))
