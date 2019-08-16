@@ -4,7 +4,9 @@
   "description": "Daily Algorithm",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc",
+    "prestart": "npm run build"
   },
   "keywords": [
     "data-structures",

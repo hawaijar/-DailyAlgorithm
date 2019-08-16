@@ -5,11 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "chrome",
+      "type": "node",
       "request": "launch",
-      "name": "Launch Chrome",
-      "url": "http://localhost:5500",
-      "webRoot": "${workspaceFolder}"
+      "name": "Build Project",
+      "program": "${workspaceFolder}\\src\\Maze\\main.ts",
+      "preLaunchTask": "npm: build",
+      "sourceMaps": true,
+      "smartStep": true,
+      "internalConsoleOptions": "openOnSessionStart",
+      "outFiles": ["${workspaceFolder}/dist/Maze/main.js"]
     }
   ]
 }
