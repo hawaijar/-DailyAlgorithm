@@ -1,6 +1,7 @@
 import Graph from "./Graph";
 import Cell from "./Cell";
 import { breadFirstSearch } from "./pathFinders"
+console.log('Hello world!')
 
 let maze = [
     [1, 2, 0, 0, 0],
