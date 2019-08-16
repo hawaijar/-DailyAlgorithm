@@ -1,7 +1,6 @@
-import Cell from "./Cell";
 import PriorityQueue, { PQElement } from "./PriorityQueue";
 
-export class Graph<T extends string | number> {
+export default class Graph<T> {
     adjacencyList: Map<T, { node: T, weight: number }[]>;
     constructor(public noOfVertices: number) {
         this.adjacencyList = new Map();
@@ -14,6 +13,13 @@ export class Graph<T extends string | number> {
             this.adjacencyList.get(u)!.push({ node: v, weight })
         }
     }
+    getNeighbours(node: T) {
+        if (this.adjacencyList.size > 0) {
+            return this.adjacencyList.get(node);
+        }
+        return [];
+    }
+
     display() {
         let keys = this.adjacencyList.keys();
         for (let vertex of keys) {
@@ -56,21 +62,21 @@ function dijikstraShortestPath<T extends string | number>(graph: Graph<T>, sourc
 
 }
 
-let g = new Graph<number>(4);
-g.addVertex(1);
-g.addVertex(2);
-g.addVertex(3);
-g.addVertex(4);
-g.addVertex(5);
-g.addEdge(1, 2, 3);
-g.addEdge(1, 3, 4);
-g.addEdge(1, 4, 1);
-g.addEdge(2, 5, 5);
-g.addEdge(3, 4, 7);
-g.addEdge(4, 2, 1);
-g.addEdge(4, 5, 1);
-g.addEdge(5, 5, 0);
+// let g = new Graph<number>(4);
+// g.addVertex(1);
+// g.addVertex(2);
+// g.addVertex(3);
+// g.addVertex(4);
+// g.addVertex(5);
+// g.addEdge(1, 2, 3);
+// g.addEdge(1, 3, 4);
+// g.addEdge(1, 4, 1);
+// g.addEdge(2, 5, 5);
+// g.addEdge(3, 4, 7);
+// g.addEdge(4, 2, 1);
+// g.addEdge(4, 5, 1);
+// g.addEdge(5, 5, 0);
 
-dijikstraShortestPath(g, 1, 5);
+// dijikstraShortestPath(g, 1, 5);
 
 

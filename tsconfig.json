@@ -12,6 +12,10 @@
     "esModuleInterop": true,
     "moduleResolution": "node"
   },
-  "include": ["src/Maze/**/*.ts", "src/Sorting/**/*.ts"],
+  "include": [
+    "src/Maze/**/*.ts",
+    "src/Sorting/**/*.ts",
+    "src/Recursions/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }
