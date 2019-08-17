@@ -1,8 +1,6 @@
 import Graph from "./Graph";
 import Cell from "./Cell";
 import { breadFirstSearch } from "./pathFinders"
-console.log('Hello world!')
-
 let maze = [
     [1, 2, 0, 0, 0],
     [1, 5, 1, 2, 0],
@@ -10,6 +8,8 @@ let maze = [
     [9, 8, 8, 1, 2],
     [10, 0, 10, 1, 10]
 ];
+
+window.maze = maze;
 
 const DIRECTIONS = [[0, 1], [0, -1], [1, 0], [-1, 0]];
 const ROWS = maze.length;
@@ -55,7 +55,7 @@ for (let vertex of vertices) {
 }
 
 
-breadFirstSearch(graph, [0, 0], [4, 4])
+window.bfs = breadFirstSearch(graph, [0, 0], [4, 4])
 
 
 

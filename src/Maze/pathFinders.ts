@@ -44,9 +44,11 @@ export function breadFirstSearch(graph: Graph<Cell>, s: [number, number], d: [nu
         }
     }
     /** Reconstruct the path from destination to source via the 'parent' field */
+    let result = [];
     let current = destination;
     while (current) {
-        console.log(`[${current.x}][${current.y}]`);
+        result.push(`[${current.x}][${current.y}]`);
         current = current.parent!;
     }
+    return result.reverse();
 }

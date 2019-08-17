@@ -1,3 +1,4 @@
+.cache
 #dist/*.js
 src/**/*.map
 src/**/*.js

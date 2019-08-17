@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,10 +8,26 @@
 </head>
 
 <body>
-    <div>
-        <h2>Hello World</h2>
-    </div>
-    <script> src = "./dist/Maze/main.js"</script>
+    <script src="./p5/p5.min.js"></script>
+    <script src="./p5/addons/p5.dom.min.js"></script>
+    <script src="src/Maze/main.ts"></script>
+    <script>
+        function setup() {
+            createCanvas(200, 200);
+            background('red');
+            var maze = window.maze;
+            var bfs = window.bfs;
+            var txt = '';
+            for (let i = 0; i < bfs.length; i++) {
+                let vertex = bfs[i];
+                txt += `${vertex} ${i === bfs.length - 1 ? "" : "-->"}`
+            }
+            createP(txt)
+        }
+        function draw() {
+            //rect(0, 0, 50, 50);
+        }
+    </script>
 </body>
 
 </html>
