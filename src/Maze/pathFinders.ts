@@ -47,7 +47,7 @@ export function breadFirstSearch(graph: Graph<Cell>, s: [number, number], d: [nu
     let result = [];
     let current = destination;
     while (current) {
-        result.push(`[${current.x}][${current.y}]`);
+        result.push([current.x, current.y]);
         current = current.parent!;
     }
     return result.reverse();

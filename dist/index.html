@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="/p5.min.d63b9c96.js"></script>
+    <script src="/p5.dom.min.9e72f1cb.js"></script>
+    <script src="/main.d13e0fc8.js"></script>
+    <script>function setup() {
+  createCanvas(600, 600);
+}
+
+function draw() {
+  background(255);
+  fill(0);
+  stroke(0, 250, 0);
+  strokeWeight(1);
+  var maze = window.maze;
+  var ROWS = maze.length;
+  var COLS = maze[0].length;
+  var bfs = window.bfs;
+
+  for (var x = 0; x < COLS; x += 1) {
+    for (var y = 0; y < ROWS; y += 1) {
+      fill(250);
+
+      if (bfs.some(function (vertex) {
+        return vertex[0] === x && vertex[1] === y;
+      })) {
+        fill(5, 3, 147);
+      }
+
+      if (maze[x][y] === 0) {
+        fill(250, 0, 0);
+      }
+
+      rect(y * 70, x * 70, 70, 70);
+    }
+  }
+}</script>
+</body>
+
+</html>
