@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Build Project",
-      "program": "${workspaceFolder}\\src\\Maze\\main.ts",
+      "program": "${workspaceFolder}/src/Maze/main.ts",
       "preLaunchTask": "npm: build",
       "sourceMaps": true,
       "smartStep": true,

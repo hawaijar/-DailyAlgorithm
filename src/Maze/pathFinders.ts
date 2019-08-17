@@ -28,13 +28,11 @@ export function breadFirstSearch(graph: Graph<Cell>, s: [number, number], d: [nu
     /** Explore all nodes till we find the destination */
     while (queue.length > 0) {
         let current = queue.pop()!;
-        console.log(current);
         if (current === destination) {
             break;
         }
         current.visited = true;
         let neighbours = graph.getNeighbours(current)!;
-        console.log(neighbours);
         /** Parse all the neighbours */
         for (let i = 0; i < neighbours.length; i++) {
             let neighbour = neighbours[i];

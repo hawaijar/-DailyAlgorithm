@@ -15,7 +15,9 @@ export default class Graph<T> {
     }
     getNeighbours(node: T) {
         if (this.adjacencyList.size > 0) {
-            return this.adjacencyList.get(node);
+            if (this.adjacencyList.has(node)) {
+                return this.adjacencyList.get(node);
+            }
         }
         return [];
     }
