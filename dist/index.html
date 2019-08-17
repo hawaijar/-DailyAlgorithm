@@ -13,6 +13,7 @@
     <script src="/main.d13e0fc8.js"></script>
     <script>function setup() {
   createCanvas(600, 600);
+  console.warn(window.bfs);
 }
 
 function draw() {
@@ -25,22 +26,26 @@ function draw() {
   var COLS = maze[0].length;
   var bfs = window.bfs;
 
-  for (var x = 0; x < COLS; x += 1) {
-    for (var y = 0; y < ROWS; y += 1) {
-      fill(250);
+  if (!window.count) {
+    for (var x = 0; x < COLS; x += 1) {
+      for (var y = 0; y < ROWS; y += 1) {
+        fill(250);
 
-      if (bfs.some(function (vertex) {
-        return vertex[0] === x && vertex[1] === y;
-      })) {
-        fill(5, 3, 147);
+        if (bfs.some(function (vertex) {
+          return vertex[0] === x && vertex[1] === y;
+        })) {
+          fill(5, 3, 147);
+        }
+
+        if (maze[x][y] === 0) {
+          fill(250, 0, 0);
+        }
+
+        rect(y * 70, x * 70, 70, 70);
       }
-
-      if (maze[x][y] === 0) {
-        fill(250, 0, 0);
-      }
-
-      rect(y * 70, x * 70, 70, 70);
     }
+
+    window.count = true;
   }
 }</script>
 </body>

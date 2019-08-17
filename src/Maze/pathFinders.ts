@@ -1,7 +1,7 @@
 import Graph from "./Graph";
 import Cell from "./Cell";
 
-export function breadFirstSearch(graph: Graph<Cell>, s: [number, number], d: [number, number]) {
+export function breathFirstSearch(graph: Graph<Cell>, s: [number, number], d: [number, number]) {
     /** Find the source/destination nodes using the co-ordinates */
     let source: Cell | null = null;
     let destination: Cell | null = null;
@@ -51,4 +51,8 @@ export function breadFirstSearch(graph: Graph<Cell>, s: [number, number], d: [nu
         current = current.parent!;
     }
     return result.reverse();
+}
+export function bestFirstSearch(graph: Graph<Cell>, s: [number, number], d: [number, number]) {
+
+
 }

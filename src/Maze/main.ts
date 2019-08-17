@@ -1,31 +1,18 @@
 import Graph from "./Graph";
 import Cell from "./Cell";
-import { breadFirstSearch } from "./pathFinders"
+import { breathFirstSearch } from "./pathFinders"
 let maze = [
     [1, 2, 0, 0, 0],
-    [0, 5, 1, 2, 0],
-    [7, 0, 5, 1, 1],
-    [9, 8, 0, 0, 2],
-    [0, 0, 0, 0, 10]
+    [1, 5, 1, 2, 0],
+    [7, 2, 5, 0, 1],
+    [9, 8, 8, 1, 2],
+    [1, 1, 1, 1, 1]
 ];
 
-const DIRECTIONS = [[0, 1], [0, -1], [1, 0], [-1, 0]];
+const DIRECTIONS = [[0, 1], [0, -1], [1, 0], [-1, 0], [-1, -1], [1, -1], [-1, 1], [1, 1]];
 const ROWS = maze.length;
 const COLS = maze[0].length;
 const noOfVertices = ROWS * COLS;
-
-function directions(cell: Cell) {
-    let result: Cell[] = [];
-    for (let direction of DIRECTIONS) {
-        let [x, y] = [cell.x + direction[0], cell.y + direction[1]];
-        /** Check if there's any vertex having this [x,y] co-ordinate */
-        let xy = `${x},${y}`;
-        if (xy in hashXYToVertex) {
-            result.push(hashXYToVertex[xy]);
-        }
-    }
-    return result;
-}
 
 /** initialization of the graph(V,E) */
 let graph = new Graph<Cell>(noOfVertices);
@@ -42,6 +29,21 @@ for (let i = 0; i < ROWS; i++) {
         hashXYToVertex[xy] = cell;
     }
 }
+
+function directions(cell: Cell) {
+    let result: Cell[] = [];
+    for (let direction of DIRECTIONS) {
+        let [x, y] = [cell.x + direction[0], cell.y + direction[1]];
+        /** Check if there's any vertex having this [x,y] co-ordinate */
+        let xy = `${x},${y}`;
+        if (xy in hashXYToVertex) {
+            result.push(hashXYToVertex[xy]);
+        }
+    }
+    return result;
+}
+
+
 let vertices = graph.adjacencyList.keys();
 for (let vertex of vertices) {
     let neighbours = directions(vertex);
@@ -53,7 +55,7 @@ for (let vertex of vertices) {
 }
 
 window.maze = maze;
-window.bfs = breadFirstSearch(graph, [0, 0], [4, 4])
+window.bfs = breathFirstSearch(graph, [0, 0], [4, 4])
 
 
 
